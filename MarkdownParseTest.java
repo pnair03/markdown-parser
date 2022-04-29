@@ -95,6 +95,6 @@ public class MarkdownParseTest {
         Path fileName = Path.of("/Users/pranavnair/Desktop/markdown-parser/test-file8.md");
         String content = Files.readString(fileName);
         ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
-        assertEquals(0, fileLinks.size());
+        assertEquals(1, fileLinks.size());
     }
 }
