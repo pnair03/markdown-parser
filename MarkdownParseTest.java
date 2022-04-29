@@ -97,4 +97,13 @@ public class MarkdownParseTest {
         ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
         assertEquals(1, fileLinks.size());
     }
+
+    @Test
+    public void test_File9() throws IOException {
+        Path fileName = Path.of("test-file9.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
+        String[] links = {"http://msdn.microsoft.com/en-us/library/aa752574(VS.85).aspx"};
+        assertEquals(links[0], fileLinks.get(0));
+    }
 }
