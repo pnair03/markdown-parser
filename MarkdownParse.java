@@ -24,9 +24,13 @@ public class MarkdownParse {
             }
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
+            if (markdown.indexOf("(", openParen + 1) != -1 && markdown.indexOf("(", openParen + 1) < closeParen) {
+                closeParen = markdown.indexOf(")", closeParen + 1);
+            }
 
             //only add the link if it's not an image link and both ( and ) were found
             //and if there are no more than 3 characters between ] and (
+			
             if (openParen != -1 && closeParen != -1 && (openParen - closeBracket) < 3) {
                 if (openBracket == 0) {
                     toReturn.add(markdown.substring(openParen + 1, closeParen));
@@ -37,7 +41,7 @@ public class MarkdownParse {
                     }
                 }
             }
-
+			
             //if either ( or ) were not found, restart the search from ]
             //otherwise restart the search from )
             if (openParen == -1 || closeParen == -1) {
