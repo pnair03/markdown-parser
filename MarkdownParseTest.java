@@ -106,4 +106,38 @@ public class MarkdownParseTest {
         String[] links = {"http://msdn.microsoft.com/en-us/library/aa752574(VS.85).aspx"};
         assertEquals(links[0], fileLinks.get(0));
     }
+
+    /**
+     * Lab Report 4 Tests
+     */
+    @Test
+    public void test_Snip1() throws IOException {
+        Path fileName = Path.of("snippet1.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
+        String[] links = {"`google.com", "google.com", "ucsd.edu"};
+        assertEquals(links[0], fileLinks.get(0));
+        assertEquals(links[1], fileLinks.get(1));
+        assertEquals(links[2], fileLinks.get(2));
+    }
+
+    @Test
+    public void test_Snip2() throws IOException {
+        Path fileName = Path.of("snippet2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
+        String[] links = {"a.com", "a.com(())", "example.com"};
+        assertEquals(links[0], fileLinks.get(0));
+        assertEquals(links[1], fileLinks.get(1));
+        assertEquals(links[2], fileLinks.get(2));
+    }
+
+    @Test
+    public void test_Snip3() throws IOException {
+        Path fileName = Path.of("snippet3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> fileLinks = MarkdownParse.getLinks(content);
+        String[] links = {"https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule"};
+        assertEquals(links[0], fileLinks.get(0));
+    }
 }
